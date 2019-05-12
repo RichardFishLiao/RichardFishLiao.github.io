@@ -229,6 +229,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/排序算法/数据结构：O(n^2)的排序算法之冒泡排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Liao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/12/排序算法/数据结构：O(n^2)的排序算法之冒泡排序/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T09:48:34+08:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据结构：O-n-2-的排序算法之冒泡排序"><a href="#数据结构：O-n-2-的排序算法之冒泡排序" class="headerlink" title="数据结构：O(n^2)的排序算法之冒泡排序"></a>数据结构：O(n^2)的排序算法之冒泡排序</h1><p>标签（空格分隔）： 数据结构</p>
+<hr>
+<p>##冒泡排序</p>
+<ul>
+<li>冒泡排序算法的原理</li>
+</ul>
+<blockquote>
+<ul>
+<li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+<li>对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ul>
+</blockquote>
+<p>-图解</p>
+<p><img src="https://camo.githubusercontent.com/21b2660dd3999286dfe92249f525fec31c7ddae9/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f313934303331372d666166636634393939376435313165652e6769663f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970" alt="相当于在每个数字的下面有一杆称，每当左边的重量高于右边的重量时就互换顺序，知道最后不用换为止"></p>
+<blockquote>
+<p>相当于在每个数字的下面有一杆称，每当左边的重量高于右边的重量（arr[i]&gt;arr[i]）时就互换顺序，直到最后不用换为止</p>
+</blockquote>
+<ul>
+<li>流程图理解<br><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0=baike150,5,5,150,50/sign=f469bce5077b020818c437b303b099b6/bf096b63f6246b60965c2634e6f81a4c510fa224.jpg" alt="此处输入图片的描述"></li>
+</ul>
+<blockquote>
+<p>第一步： 设置一个外部的i（相当于锚点），使之与数组的长度N相同，我们是从数组最后往前进行比较的，所以才叫冒泡<br>第二步： <b>必须确定数组是大于1的</b>，如果数组为0，或者只有一个，那么这个排序将毫无意义<br>第三步:  设置一个内部的j，只有j小于i的时候才能进行比较，这是为了加快速度，因为在这个流程图当中，已经假定i后面的数字已经做好了排序，不需要再排序一次<br>第四步： 如果我们期待的顺序是左边小，右边大，那么在左边的数字比右边大的时候就需要把他们交换顺序，而这样的循环一定能够把前面未排序好的数字当中最大的数字找出来，此为冒泡。<br>第五步：每遍历完一次调整顺序之后，i都会减去1，把新排好的泡泡放到i后面去，直到最后i=1之后排序结束。</p>
+</blockquote>
+<ul>
+<li>代码实现</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(collection)</span>:</span></span><br><span class="line"><span class="string">"""Pure implementation of bubble sort algorithm in Python</span></span><br><span class="line"><span class="string">:param collection: some mutable ordered collection with heterogeneous</span></span><br><span class="line"><span class="string">comparable items inside</span></span><br><span class="line"><span class="string">:return: the same collection ordered by ascending</span></span><br><span class="line"><span class="string">Examples:</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>bubble_sort([0, 5, 3, 2, 2])</span></span><br><span class="line"><span class="string">[0, 2, 2, 3, 5]</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>bubble_sort([])</span></span><br><span class="line"><span class="string">[]</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>bubble_sort([-2, -5, -45])</span></span><br><span class="line"><span class="string">[-45, -5, -2]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>bubble_sort([-23,0,6,-4,34])</span></span><br><span class="line"><span class="string">[-23,-4,0,6,34]</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">length = len(collection)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(length<span class="number">-1</span>):</span><br><span class="line">    swapped = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(length<span class="number">-1</span>-i):</span><br><span class="line">        <span class="keyword">if</span> collection[j] &gt; collection[j+<span class="number">1</span>]:</span><br><span class="line">            swapped = <span class="literal">True</span></span><br><span class="line">            collection[j],collection[j+<span class="number">1</span>]=collection[j+<span class="number">1</span>],collection[j]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> swapped: <span class="keyword">break</span>  <span class="comment"># Stop iteration if the collection is sorted.</span></span><br><span class="line"><span class="keyword">return</span> collection</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/欢迎使用 Cmd Markdown 编辑阅读器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -593,7 +741,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
